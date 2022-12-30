@@ -10,7 +10,7 @@ export const Func1 = (props: {padIdx, coordinate: DOMRect, setInput : (n: number
         }else{
             switch(idx){
                 case 7:{
-                    if(e.clientX - props.coordinate.x > props.coordinate.y + props.coordinate.height - e.clientY){
+                    if(e.changedTouches[0].clientX - props.coordinate.x > props.coordinate.y + props.coordinate.height - e.changedTouches[0].clientY){
                         togIdx(4);
                     }
                     else{
@@ -19,7 +19,7 @@ export const Func1 = (props: {padIdx, coordinate: DOMRect, setInput : (n: number
                     return;
                 }
                 case 3:{
-                    if(e.clientX - props.coordinate.x > props.coordinate.y + props.coordinate.height - e.clientY){
+                    if(e.changedTouches[0].clientX - props.coordinate.x > props.coordinate.y + props.coordinate.height - e.changedTouches[0].clientY){
                         togIdx(3);
                     }
                     else{
@@ -28,7 +28,7 @@ export const Func1 = (props: {padIdx, coordinate: DOMRect, setInput : (n: number
                     return;
                 }
                 case 1: {
-                    if(e.clientX - props.coordinate.x > e.clientY - props.coordinate.y){
+                    if(e.changedTouches[0].clientX - props.coordinate.x > e.changedTouches[0].clientY - props.coordinate.y){
                         togIdx(1);
                     }
                     else{
@@ -37,7 +37,7 @@ export const Func1 = (props: {padIdx, coordinate: DOMRect, setInput : (n: number
                     return;
                 }
                 case 9:{
-                    if(e.clientX - props.coordinate.x > e.clientY - props.coordinate.y){
+                    if(e.changedTouches[0].clientX - props.coordinate.x > e.changedTouches[0].clientY - props.coordinate.y){
                         togIdx(3);
                     }
                     else{
@@ -106,7 +106,7 @@ export const Func1 = (props: {padIdx, coordinate: DOMRect, setInput : (n: number
     }}>
         <>
         {new Array(9).fill(0).map((v, i) => {
-            return <div className={`clickBox${i}`} onTouchStart={e => onClickPad(e, i + 1)}>
+            return <div className={`clickBox${i}`} onTouchStart={e => onClickPad(e, i + 1)} key={i}>
                 {props.padIdx[i + 1] ? props.padIdx[i + 1] : ''}
             </div>
         })}

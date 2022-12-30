@@ -27,12 +27,13 @@ body{
         }
         .inputStatus{
             height: 8vh;
+            width: 100%;
             display: grid;
             align-items: center;
             .textBox{
                 margin: auto;
                 height: 50%;
-                width: 50%;
+                width: 80%;
                 background-color: yellow;
                 .text{
                     white-space: nowrap; 
@@ -82,13 +83,10 @@ body{
                 .record{
                     font-size: 3vh;
                     text-align: center;
-                    white-space: nowrap; 
-                    overflow: hidden;  
-                    text-overflow: ellipsis;
                 }
             }
             .clearButton{
-                height: 40%;
+                height: 50%;
                 background-color: blue;
                 color: white;
                 text-align: center;
