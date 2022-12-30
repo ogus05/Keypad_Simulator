@@ -33,6 +33,7 @@ const Page = () => {
             setInputStatus(inputStatus.slice(0, -1));
         }
         else if(n === specialInput.space){
+            console.log(inputStatus);
             strN = '_';
             setInputStatus(inputStatus + ' ');
         }
