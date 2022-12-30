@@ -1,0 +1,101 @@
+body{
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    .article{
+        display: grid;
+        .pageLink{
+            height: 7vh;
+            text-align: center;
+            font-size: 3vh;
+        }
+        .inputCurrent{
+            height: 20vh;
+            .textBox{
+                margin: auto;
+                border-radius: 50%;
+                background-color: orange;
+                height: 100%;
+                aspect-ratio: 1;
+                line-height: 20vh;
+                .text{
+                    height: 100%;
+                    text-align: center;
+                    font-size: 8vh;
+                }
+            }
+        }
+        .inputStatus{
+            height: 8vh;
+            display: grid;
+            align-items: center;
+            .textBox{
+                margin: auto;
+                height: 50%;
+                width: 50%;
+                background-color: yellow;
+                .text{
+                    white-space: nowrap; 
+                    overflow: hidden;  
+                    text-overflow: ellipsis;
+                    font-size: 3vh;
+                    text-align: center;
+                }
+            }
+        }
+        .inputPad{
+            height: 45vh;
+            position: relative;
+            .padBox{
+                margin: auto;
+                background-color: green;
+                height: 100%;
+                aspect-ratio: 1;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            .clickBox{
+                left: 50%;
+                transform: translate(-50%, 0);
+                position: absolute;
+                display: grid;
+                font-size: 4vh;
+                div{
+                    text-align: center;
+                    display: grid;
+                    align-items: center;
+                }
+            }
+        }
+        .inputRecord{
+            margin: auto;
+            display: grid;
+            grid-template-columns: 80% 20%;
+            width: 100%;
+            align-items: center;
+            .recordList{
+                display: grid;
+                grid-template-rows: repeat(3,33.3%);
+                height: 20vh;
+                align-items: center;
+                .record{
+                    font-size: 3vh;
+                    text-align: center;
+                    white-space: nowrap; 
+                    overflow: hidden;  
+                    text-overflow: ellipsis;
+                }
+            }
+            .clearButton{
+                height: 40%;
+                background-color: blue;
+                color: white;
+                text-align: center;
+                display: grid;
+                align-items: center;
+                font-size: 3vh;
+            }
+        }
+    }
+}
