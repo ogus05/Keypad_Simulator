@@ -101,8 +101,8 @@ export const Func2 = (props: {padIdx, coordinate: DOMRect, setInput : (n: number
         }
     }
     return <div className="clickBox" style={{
-        gridTemplateColumns: `${45 * (1 - config.centerPadRatio) / 2}vh ${45 * config.centerPadRatio}vh ${45 * (1 - config.centerPadRatio) / 2}vh`,
-        gridTemplateRows: `${45 * (1 - config.centerPadRatio) / 2}vh ${45 * config.centerPadRatio}vh ${45 * (1 - config.centerPadRatio) / 2}vh`
+        gridTemplateColumns: `${35 * (1 - config.centerPadRatio) / 2}vh ${35 * config.centerPadRatio}vh ${35 * (1 - config.centerPadRatio) / 2}vh`,
+        gridTemplateRows: `${35 * (1 - config.centerPadRatio) / 2}vh ${35 * config.centerPadRatio}vh ${35 * (1 - config.centerPadRatio) / 2}vh`
     }}>
         <>
         {new Array(9).fill(0).map((v, i) => {

@@ -9,40 +9,43 @@ import { Func2 } from "./func2";
 const Page = () => {
     const [inputCurrent, setInputCurrent] = useState('');
     const [inputStatus, setInputStatus] = useState('');
-    const [inputRecords, setInputRecords] = useState<string[]>([]);
+    const [inputRecords, setInputRecords] = useState<string[]>(['']);
     const [coordinate, setCoorindate] = useState<DOMRect>();
     const [mode, setMode] = useState(1);
     const [padBoxSize, setPadBoxSize] = useState(0);
     const padIdx = {'2': 1, '4': 2, '6': 3, '8': 4, '5': 5}
     let timer;
     useEffect(() => {
-        setTimeout(() => {
-            const newPadCoordinate = document.querySelector('.padBox')!.getBoundingClientRect();
-            setPadBoxSize(document.querySelector('body')!.clientHeight / 100 * 45)
-            setCoorindate(newPadCoordinate);
-        }, 10)
-    }, [])
+        window.onresize = padResizing;
+        padResizing();
+    }, []);
 
+    const padResizing=() => {
+        const newPadCoordinate = document.querySelector('.padBox')!.getBoundingClientRect();
+        setPadBoxSize(document.querySelector('body')!.clientHeight / 100 * 35)
+        setCoorindate(newPadCoordinate);
+    }
     const setInput = (n: number) => {
         let strN = n.toString();
         if(n === specialInput.error){
-            strN = 'error';
+            strN = 'err';
         }
         else if(n === specialInput.backspace){
             strN = '←';
             setInputStatus(inputStatus.slice(0, -1));
         }
         else if(n === specialInput.space){
-            console.log(inputStatus);
             strN = '_';
-            setInputStatus(inputStatus + ' ');
+            setInputStatus(inputStatus + " ");
         }
         else if(n === specialInput.enter){
-            strN = 'enter';
-            if(inputRecords.length === 3){
-                inputRecords.shift();
+            strN = 'etr';
+            if(inputStatus !== '') {
+                if(inputRecords.length === 3){
+                    inputRecords.shift();
+                }
+                setInputRecords([...inputRecords, inputStatus]);
             }
-            setInputRecords([...inputRecords, inputStatus]);
             setInputStatus('');
         }
         else{
@@ -69,10 +72,15 @@ const Page = () => {
         
     return <>
         <div className="article">
-            <div className="pageLink" onClick={e => switchMode(e)}>
-                {`go to page${(mode % 2) + 1}`}
+            <div className="pageLink">
+                <div className={`togSwitch${mode}`} onClick={e => switchMode(e)}>
+                    <div className='togButton'>
+                        {mode === 1 ? 'M' : 'T'}
+                    </div>
+                </div>
             </div>
             <div className="inputCurrent">
+                <img src="/images/inputCurrent.png" alt="" />
                 <div className="textBox">
                     <div className="text">
                         {inputCurrent}
@@ -87,6 +95,8 @@ const Page = () => {
                 </div>
             </div>
             <div className="inputPad">
+                <div className="padBackground">
+
                 <div className="padBox">
                     <div className="box1" style={{
                         position: 'absolute',
@@ -94,7 +104,7 @@ const Page = () => {
                         top: 0,
                         transform: `translate(-50%, 0)`,
                         width: `${padBoxSize * config.centerPadRatio + 'px'}`,
-                        borderTop: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid yellow`,
+                        borderTop: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid #dfdfdf`,
                         borderLeft: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                         borderRight: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                     }}></div>
@@ -104,7 +114,7 @@ const Page = () => {
                         top: `50%`,
                         transform: `translate(0, -50%)`,
                         height: `${padBoxSize * config.centerPadRatio + 'px'}`,
-                        borderLeft: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid yellow`,
+                        borderLeft: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid #dfdfdf`,
                         borderTop: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                         borderBottom: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                     }}></div>
@@ -114,7 +124,7 @@ const Page = () => {
                         top: `50%`,
                         transform: `translate(0, -50%)`,
                         height: `${padBoxSize * config.centerPadRatio + 'px'}`,
-                        borderRight: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid yellow`,
+                        borderRight: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid #dfdfdf`,
                         borderTop: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                         borderBottom: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                     }}></div>
@@ -124,7 +134,7 @@ const Page = () => {
                         bottom: 0,
                         transform: `translate(-50%, 0)`,
                         width: `${padBoxSize * config.centerPadRatio + 'px'}`,
-                        borderBottom: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid yellow`,
+                        borderBottom: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid #dfdfdf`,
                         borderLeft: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                         borderRight: `${padBoxSize * ((1 - config.centerPadRatio) / 2 - config.padGapRatio) + 'px'} solid transparent`,
                     }}></div>
@@ -135,25 +145,28 @@ const Page = () => {
                         transform: `translate(-50%, -50%)`,
                         height: `${padBoxSize * config.centerPadRatio + 'px'}`,
                         width: `${padBoxSize * config.centerPadRatio + 'px'}`,
-                        backgroundColor: `red`,
+                        backgroundColor: `#C6C5C5`,
                     }}></div>
                 </div>
                 {
-                    mode === 1 ? <Func1 padIdx={padIdx} coordinate={coordinate as DOMRect} setInput={setInput}/>
+                    mode !== 1 ? <Func1 padIdx={padIdx} coordinate={coordinate as DOMRect} setInput={setInput}/>
                     : <Func2 padIdx={padIdx} coordinate={coordinate as DOMRect} setInput={setInput}/>
                 }
+                </div>
                 
             </div>
             <div className="inputRecord">
                 <div className="recordList">
+                    <div className="recordBox">
                     {new Array(3).fill(0).map((v, i) => {
                         return <div className="record" key={i}>
-                                {inputRecords[i]}
+                                {inputRecords[i] ? inputRecords[i] : <>&nbsp;</>}
                         </div>
                     })}
+                    </div>
                 </div>
                 <div className="clearButton" onClick={e => setInputRecords([])}>
-                    초기화
+                    C
                 </div>
             </div>
         </div>

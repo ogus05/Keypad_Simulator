@@ -8,7 +8,7 @@ export enum specialInput {
 
 export const config = {
     displayInputMS: 500,
-    centerPadRatio: 0.4,
+    centerPadRatio: 0.45,
     padGapRatio: 0.015,
     func1TimeOutMS: 50,
     func2Interval: 0.08,
