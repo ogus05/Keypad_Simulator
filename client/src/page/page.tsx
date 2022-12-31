@@ -31,7 +31,7 @@ const Page = () => {
             strN = 'err';
         }
         else if(n === specialInput.backspace){
-            strN = '←';
+            strN = '<';
             setInputStatus(inputStatus.slice(0, -1));
         }
         else if(n === specialInput.space){
