@@ -9,10 +9,11 @@ import { Func2 } from "./func2";
 const Page = () => {
     const [inputCurrent, setInputCurrent] = useState('');
     const [inputStatus, setInputStatus] = useState('');
-    const [inputRecords, setInputRecords] = useState<string[]>(['']);
+    const [inputRecords, setInputRecords] = useState<string[]>([]);
     const [coordinate, setCoorindate] = useState<DOMRect>();
     const [mode, setMode] = useState(1);
     const [padBoxSize, setPadBoxSize] = useState(0);
+    const [specialCurrent, setSpecialCurrent] = useState([false, false]);
     const padIdx = {'2': 1, '4': 2, '6': 3, '8': 4, '5': 5}
     let timer;
     useEffect(() => {
@@ -29,17 +30,21 @@ const Page = () => {
         let strN = n.toString();
         if(n === specialInput.error){
             strN = 'err';
+            setInputCurrent(strN);
         }
         else if(n === specialInput.backspace){
             strN = '<';
             setInputStatus(inputStatus.slice(0, -1));
+            setSpecialCurrent([false, true]);
         }
         else if(n === specialInput.space){
             strN = '_';
             setInputStatus(inputStatus + " ");
+            setInputCurrent(strN);
         }
         else if(n === specialInput.enter){
             strN = 'etr';
+            console.log(inputRecords);
             if(inputStatus !== '') {
                 if(inputRecords.length === 3){
                     inputRecords.shift();
@@ -47,16 +52,18 @@ const Page = () => {
                 setInputRecords([...inputRecords, inputStatus]);
             }
             setInputStatus('');
+            setSpecialCurrent([true, false]);
         }
         else{
             setInputStatus(inputStatus + strN);
+            setInputCurrent(strN);
         }
-        setInputCurrent(strN);
         if(timer){
             clearTimeout(timer);
         }
         timer = setTimeout(() => {
             setInputCurrent('');
+            setSpecialCurrent([false, false]);
             timer = null;
         }, config.displayInputMS);
     }
@@ -83,7 +90,7 @@ const Page = () => {
                 <img src="/images/inputCurrent.png" alt="" />
                 <div className="textBox">
                     <div className="text">
-                        {inputCurrent}
+                        {inputCurrent ? inputCurrent : specialCurrent[0] ? <img src="/images/enter.png"/> : specialCurrent[1] ? <img src="/images/backspace.png"/> : null}
                     </div>
                 </div>
             </div>
@@ -166,7 +173,7 @@ const Page = () => {
                     </div>
                 </div>
                 <div className="clearButton" onClick={e => setInputRecords([])}>
-                    C
+                    Clear
                 </div>
             </div>
         </div>

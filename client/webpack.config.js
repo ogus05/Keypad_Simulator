@@ -19,7 +19,7 @@ const setEntry = srcDir => {
 
 module.exports = {
     mode: 'development',
-    entry: setEntry('./src'),
+    entry: './src/page.tsx',
     output:{
         filename: '[name].js',
         path: path.resolve(__dirname, 'public', 'js'),
