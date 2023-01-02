@@ -1,2 +1,2 @@
 @echo off
-node server.js
+start chrome %~dps0client/public/page.html

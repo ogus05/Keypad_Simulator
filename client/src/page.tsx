@@ -15,7 +15,7 @@ const Page = () => {
     //입력 확인.
     const [inputCurrent, setInputCurrent] = useState('');
     //입력 상태.
-    const [inputStatus, setInputStatus] = useState('12345678901234');
+    const [inputStatus, setInputStatus] = useState('');
     //입력 기록.
     const [inputRecords, setInputRecords] = useState<string[]>([]);
     //pad의 좌표를 나타냅니다.
@@ -107,10 +107,10 @@ const Page = () => {
                 </div>
             </div>
             <div className="inputCurrent">
-                <img src="/images/inputCurrent.png" alt="" />
+                <img src="./images/inputCurrent.png" alt="" />
                 <div className="textBox">
                     <div className="text">
-                        {inputCurrent ? inputCurrent : specialCurrent[0] ? <img src="/images/enter.png"/> : specialCurrent[1] ? <img src="/images/backspace.png"/> : null}
+                        {inputCurrent ? inputCurrent : specialCurrent[0] ? <img src="./images/enter.png"/> : specialCurrent[1] ? <img src="./images/backspace.png"/> : null}
                     </div>
                 </div>
             </div>
