@@ -14,7 +14,6 @@ body{
     background: linear-gradient(to right, #fff, #fff,  #B7B7B7);
     .article{
         display: grid;
-        width: 80%;
         margin: auto;
         .pageLink{
             height: 7vh;
@@ -91,14 +90,14 @@ body{
         }
         .inputStatus{
             height: 8vh;
-            width: 90%;
+            width: 40vh;
             margin: auto;
             display: grid;
             align-items: center;
             .textBox{
                 margin: auto;
                 height: 50%;
-                width: 80%;
+                width: 100%;
                 background: linear-gradient(to right, #fff, #B7B7B7);
                 box-shadow: 1px 3px 3px 1px #B7B7B7;
                 .text{

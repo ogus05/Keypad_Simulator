@@ -7,17 +7,15 @@ const server = http.createServer((req, res) => {
         retFile += '/page.html';
         res.write(fs.readFileSync(retFile))
         res.end();
-    } 
-    else if(req.url === '/favicon.ico'){
-        res.end();
     }
     else{
         try{
             retFile += req.url;
             res.write(fs.readFileSync(retFile))
-            res.end();
         }
         catch{
+        }
+        finally{
             res.end();
         }
     }
