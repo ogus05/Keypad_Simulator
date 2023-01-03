@@ -10,7 +10,7 @@ import { MiddlePoint } from "./MiddlePoint";
 //DOM에 그려지는 main component입니다.
 //이 Component는 페이지의 얼개를 잡고, 하위 Component로 TwoFinger, MiddlePoint(ClickPad)를 갖습니다.
 //ClickPad들은 keypad 위에 그려져 사용자의 입력을 감지합니다.
-//대부분의 constant value들은 interface.tsx의 config object로 조정이 가능합니다.
+//대부분의 constant value들은 interface.tsx의 config object로 control이 가능합니다.
 const Page = () => {
     //입력 확인.
     const [inputCurrent, setInputCurrent] = useState('');

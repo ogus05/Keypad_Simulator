@@ -1,4 +1,5 @@
 import {config, specialInput} from './interface';
+import { isMobile, isBrowser } from 'react-device-detect';
 
 
 //동시 입력을 받습니다. 이는 아주 짧은 시간동안 2개를 눌렀는지의 여부를 통해 판단합니다.
@@ -116,7 +117,7 @@ export const TwoFinger = (props: {padIdx, coordinate: DOMRect, setInput : (n: nu
     }}>
         <>
         {new Array(9).fill(0).map((v, i) => {
-            return <div className={`clickBox${i}`} onTouchStart={e => onClickPad(e, i + 1)} key={i}>
+            return <div className={`clickBox${i}`} onMouseDown={e => isBrowser ? onClickPad(e, i + 1) : null} onTouchStart={e => onClickPad(e, i + 1)} key={i}>
                 {props.padIdx[i + 1] ? props.padIdx[i + 1] : ''}
             </div>
         })}
